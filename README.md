@@ -53,11 +53,11 @@ function mystery(n) {
     }
 }
 ```
-In the base case $T(1) = 1$, when not in the base case the recurrence relation for this function would be $T(n) = 3 \cdot T(n/3) + n^2 \cdot n \cdot n^2$ 
+In the base case $T(1) = 1$, when not in the base case the recurrence relation for this function would be $T(n) = 3 \cdot T(n/3) + (n/3)^2 \cdot n/3 \cdot (n/3)^2$ 
 
 or
 
-$T(n) = 3 \cdot T(n/3) + n^5$
+$T(n) = 3 \cdot T(n/3) + (n/3)^{5}$
 
 $T(n/3) = 3(3 \cdot T(n/3/3) + (n/3)^{5}$
 
