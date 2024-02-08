@@ -59,23 +59,23 @@ or
 
 $T(n) = 3 \cdot T(n/3) + n^5$
 
-$T(n/3) = 3(3 \cdot T(n/3/3) + n^5/3$
+$T(n/3) = 3(3 \cdot T(n/3/3) + (n/3)^{5}$
 
-$= 9 \cdot T(n/9) + n^5/3$
+$= 9 \cdot T(n/9) + (n/3)^{5}$
 
-$= 27 \cdot T(n/27) + n^5/9$
+$= 27 \cdot T(n/27) + (n/9)^{5}$
 
-$= 81 \cdot T(n/81) + n^5/27$
+$= 81 \cdot T(n/81) + (n/27)^{5}$
 
 Using this pattern we can see that our recurrence relation is:
 
-$T(n) = 3^i \cdot T(n/3^i) + n^5/i$ where $i = \log_{3}n$, because each recursive call splits the array into thirds.
+$T(n) = 3^i \cdot T(n/3^i) + (n/i)^{5}$ where $i = \log_{3}n$, because each recursive call splits the array into thirds.
 
-$T(n) = 3^{\log_{3}n} \cdot T(n/3^{\log_{3}n}) + n^5/\log_{3}n$
+$T(n) = 3^{\log_{3}n} \cdot T(n/3 \cdot \log_{3}n) + (n/ \log_{3}n)^{5}$
 
-$T(n) = n \cdot T(1) + n^5/\log_{3}n$
+$T(n) = n \cdot T(1) + (n/ \log_{3}n)^{5}$
 
-$T(n) = n + n^5/\log_{3}n$
+$T(n) = n + (n / \log_{3}n)^{5}$
 
 Ignoring lower order terms leaves us with 
 
