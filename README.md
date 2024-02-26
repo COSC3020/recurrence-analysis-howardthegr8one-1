@@ -53,29 +53,35 @@ function mystery(n) {
     }
 }
 ```
-In the base case $T(1) = 1$, when not in the base case the recurrence relation for this function would be $T(n) = 3 \cdot T(n/3) + n^{2} \cdot n \cdot n^{2}$ 
+In the base case $T(1) = 1$, when not in the base case the recurrence relation for this function would be $T(n) = 3 \cdot T(n/3) + n^{2} \cdot n \cdot n^{2}$, or in other terms:
 
-or
+$$\begin{equation}T(n)=\begin{cases}1, & \text{if $n \leq 1$} \\
+3T(\frac{n}{3})+n^5+C & \text{if $n>1$}\end{cases}\end{equation}$$
 
-$T(n) = 3 \cdot T(n/3) + n^{5}$
+$T(n) = 3T(\frac{n}{3}) + n^{5} + C$
 
-$T(n/3) = 3(3 \cdot T(n/3/3)) + (n/3)^{5} + n^{5}$
+$T(\frac{n}{3}) = 3(3T(\frac{n}{3}) + n^{5} + C) + n^{5} + C$
 
-$= 9 \cdot T(n/9) + (4n/3)^{5}$
+$= 9T(\frac{n}{9}) + 3(\frac{n}{3})^{5} +3C + n^{5} + C$
 
-$= 27 \cdot T(n/27) + (13n/9)^{5}$
+$= 9T(\frac{n}{9}) + \frac{n^5}{3^4} + n^5 + 4C$
 
-Using this pattern we can see that our recurrence relation is:
+$T(\frac{n}{3}) = 3(9T(\frac{n/9}{3}) + \frac{n^5/3^4}{3} + (\frac{n}{3})^5 + 4C) + n^5 + C$
 
-$T(n) = 3^i \cdot T(n/3^i) + (ni)^{5}$ where $i = \log_{3}n$, because each recursive call splits the array into thirds.
+$= 27T(\frac{n}{27}) + 3(\frac{n^5}{3^5}) +(\frac{n^5}{3^5}) +9C + n^5 + C$
 
-$T(n) = 3^{\log_{3}n} \cdot T(n/3 \cdot \log_{3}n) + (n \log_{3}n)^{5}$
+$= 27T(\frac{n}{27}) + (\frac{n^5}{3^4}) + (\frac{n^5}{3^5}) +n^5 + 10C$
 
-$T(n) = n \cdot T(1) + (n/ \log_{3}n)^{5}$
+$T(n) = 3^iT(\frac{n}{3^i})$ $+ \sum \limits_{j=0}^{i-1} \frac{n^5}{3^{4j}} +$ some constant $C$
 
-$T(n) = n + (n / \log_{3}n)^{5}$
+I've ommitted the math for the constant $C$ as this won't affect our runtime asymptotically. Since this relation involves 3 recursive calls where each call uses $\frac{n}{3}$ we know our $i = \log_{3}n$. Subbing this into our relation gives us: 
 
-Ignoring lower order terms leaves us with 
+$T(n) = 3^{\log_{3}n}T(\frac{n}{3^{\log_{3}n}}) + \sum\limits_{j=0}^{\log_{3}n-1}\frac{n^5}{3^{j}} + C$
+
+$= n \cdot T(n/n) + \frac{n^5}{3^{\log_{3}n-1}} + C$
+
+$= n \cdot 1 + n^5 \cdot \frac{1}{3^{\log_{3}n-1}} + C$
+
+Ignoring constants and lower order terms leaves us with the following runtime complexity:
 
 $T(n) \in O(n^5)$
-
