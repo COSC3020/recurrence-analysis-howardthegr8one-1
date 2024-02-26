@@ -75,7 +75,7 @@ $= 27T(\frac{n}{27}) + (\frac{n^5}{3^4}) + (\frac{n^5}{3^5}) +n^5 + 10C$
 
 $T(n) = 3^iT(\frac{n}{3^i})$ $+ \sum \limits_{j=0}^{i-1} \frac{n^5}{3^{4j}} +$ some constant $C$ 
 
-I've ommitted the math for the constant $C$ as this won't affect our runtime asymptotically. Since this relation involves 3 recursive calls where each call uses $ \frac{n}{3}$ we know our $i = \log_{3}n$. Subbing this into our relation gives us:  
+I've ommitted the math for the constant $C$ as this won't affect our runtime asymptotically. Since this relation involves 3 recursive calls where each call uses $\frac{n}{3}$ we know our $i = \log_{3}n$. Subbing this into our relation gives us:  
 
 $T(n) = 3^{\log_{3}n}T(\frac{n}{3^{\log_{3}n}}) + \sum\limits_{j=0}^{\log_{3}n-1}\frac{n^5}{3^{j}} + C$ 
 
